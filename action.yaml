@@ -1,22 +1,37 @@
-name: 'Hello World' # taken from https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
-description: 'Greet someone'
+name: General Release
+description: 'A simple action that has an option to toggle `include administrators` on branch protection, and then run semantic-release with a given release config'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  token:
+    description: 'git token to use for the run'
     required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  toggle-admins:
+    description: 'If true, this action will disable the `include administrators` setting in branch protection for this branch, and re-enable it after release. Re-enabling is run using always()'
+    required: false
+    default: false
+  release-config:
+    description: 'The release configuration to use for the release.'
+    required: false
+    default: '@catalystsquad/release-config-general'
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: ${{ github.action_path }}/goodbye.sh
-      shell: bash
-
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ inputs.token }}
+    - uses: catalystsquad/action-branch-protection-bot@v1
+      if: inputs.toggle-admins == 'true'
+      with:
+        token: ${{ inputs.token }}
+        include-admins: false
+    - id: semantic-release
+      uses: cycjimmy/semantic-release-action@v2
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+      with:
+        extends: ${{ inputs.release-config }}
+    - uses: catalystsquad/action-branch-protection-bot@v1
+      if: inputs.toggle-admins == 'true' && always()  # Force to always run this step to ensure "include administrators" is always turned back on
+      with:
+        token: ${{ inputs.token }}
+        include-admins: true
