@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/catalystsquad/action-semantic-release-general/compare/v1.0.0...v1.0.1) (2023-01-10)
+
+
+### Bug Fixes
+
+* adjust semantic version action version ([#3](https://github.com/catalystsquad/action-semantic-release-general/issues/3)) ([683aa2f](https://github.com/catalystsquad/action-semantic-release-general/commit/683aa2ff5276d5e5f4c35edfeb5df5e9506b48e1))
+
 # 1.0.0 (2022-03-07)
 
 
