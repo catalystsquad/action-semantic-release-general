@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/catalystsquad/action-semantic-release-general/compare/v1.0.1...v1.0.2) (2023-04-28)
+
+
+### Bug Fixes
+
+* update checkout action for github deprecation ([#4](https://github.com/catalystsquad/action-semantic-release-general/issues/4)) ([2c63f37](https://github.com/catalystsquad/action-semantic-release-general/commit/2c63f376cb75c886e995491c7f5ac1c8ba0fefb4))
+
 ## [1.0.1](https://github.com/catalystsquad/action-semantic-release-general/compare/v1.0.0...v1.0.1) (2023-01-10)
 
 
