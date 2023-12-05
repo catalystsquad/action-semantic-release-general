@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/catalystsquad/action-semantic-release-general/compare/v1.0.2...v1.1.0) (2023-12-05)
+
+
+### Features
+
+* implement working-directory input, release outputs ([#5](https://github.com/catalystsquad/action-semantic-release-general/issues/5)) ([f04e6b4](https://github.com/catalystsquad/action-semantic-release-general/commit/f04e6b44ec2167a4df22d27e1d695e361b57228a))
+
 ## [1.0.2](https://github.com/catalystsquad/action-semantic-release-general/compare/v1.0.1...v1.0.2) (2023-04-28)
 
 
