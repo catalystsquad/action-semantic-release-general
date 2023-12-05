@@ -27,23 +27,33 @@ A simple action that has an option to toggle `include administrators` on branch 
     # The release configuration to use for the release.
     # Default: @catalystsquad/release-config-general
     release-config: ""
+
+    # Directory to run semantic-release in
+    working-directory: ""
+
+    # Whether to checkout the repo at the beginning of the action
+    # Default: true
+    checkout-repo: ""
 ```
 
 <!-- end usage -->
 <!-- start inputs -->
 
-| **Input**            | **Description**                                                                                                                                                                |               **Default**               | **Required** |
-| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------: | :----------: |
-| **`token`**          | git token to use for the run                                                                                                                                                   |                                         |   **true**   |
-| **`toggle-admins`**  | If true, this action will disable the `include administrators` setting in branch protection for this branch, and re-enable it after release. Re-enabling is run using always() |                                         |  **false**   |
-| **`release-config`** | The release configuration to use for the release.                                                                                                                              | `@catalystsquad/release-config-general` |  **false**   |
+| **Input**               | **Description**                                                                                                                                                                |               **Default**               | **Required** |
+| :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------: | :----------: |
+| **`token`**             | git token to use for the run                                                                                                                                                   |                                         |   **true**   |
+| **`toggle-admins`**     | If true, this action will disable the `include administrators` setting in branch protection for this branch, and re-enable it after release. Re-enabling is run using always() |                 `false`                 |  **false**   |
+| **`release-config`**    | The release configuration to use for the release.                                                                                                                              | `@catalystsquad/release-config-general` |  **false**   |
+| **`working-directory`** | Directory to run semantic-release in                                                                                                                                           |                                         |  **false**   |
+| **`checkout-repo`**     | Whether to checkout the repo at the beginning of the action                                                                                                                    |                 `true`                  |  **false**   |
 
 <!-- end inputs -->
 <!-- start outputs -->
 
-| **Output**      | **Description** | **Default** | **Required** |
-| :-------------- | :-------------- | ----------- | ------------ |
-| `random-number` | Random number   |             |              |
+| **Output**              | **Description**                                          | **Default** | **Required** |
+| :---------------------- | :------------------------------------------------------- | ----------- | ------------ |
+| `new-release-published` | The value of new_release_published from semantic-release |             |              |
+| `new-release-version`   | The value of new_release_version from semantic-release   |             |              |
 
 <!-- end outputs -->
 <!-- start examples -->
