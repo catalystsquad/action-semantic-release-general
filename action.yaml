@@ -43,7 +43,7 @@ runs:
       with:
         token: ${{ inputs.token }}
         include-admins: false
-    - id: semantic-release v3
+    - id: semantic-release-v3
       uses: cycjimmy/semantic-release-action@v3
       if: inputs.cycjimmy-version == 'v3'
       env:
@@ -51,7 +51,7 @@ runs:
       with:
         working_directory: ${{ inputs.working-directory }}
         extends: ${{ inputs.release-config }}
-    - id: semantic-release v4
+    - id: semantic-release-v4
       uses: cycjimmy/semantic-release-action@v4
       if: inputs.cycjimmy-version == 'v4'
       env:
