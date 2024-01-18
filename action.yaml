@@ -19,6 +19,10 @@ inputs:
     description: 'Whether to checkout the repo at the beginning of the action'
     required: false
     default: 'true'
+  cycjimmy-version:
+    description: 'what version of cycjimmy/semantic-release-action to use, either v3 or v4'
+    required: false
+    default: 'v3'
 outputs:
   new-release-published:
     description: "The value of new_release_published from semantic-release"
@@ -39,8 +43,17 @@ runs:
       with:
         token: ${{ inputs.token }}
         include-admins: false
-    - id: semantic-release
+    - id: semantic-release-v3
       uses: cycjimmy/semantic-release-action@v3
+      if: inputs.cycjimmy-version == 'v3'
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+      with:
+        working_directory: ${{ inputs.working-directory }}
+        extends: ${{ inputs.release-config }}
+    - id: semantic-release-v4
+      uses: cycjimmy/semantic-release-action@v4
+      if: inputs.cycjimmy-version == 'v4'
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
       with:
